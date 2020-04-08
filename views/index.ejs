@@ -130,7 +130,7 @@
         let PORT = "<%= PORT %>";
         let connectionUrl = `wss://greenrep.herokuapp.com/`;
         let connectionUrlDev = `localhost:${PORT}`;
-        let socket = io.connect(connectionUrlDev);
+        let socket = io.connect(connectionUrl);
         let dataArr;
 
         function assignData(data) {
