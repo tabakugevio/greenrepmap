@@ -103,74 +103,98 @@
     <div id="map"></div>
 
     <script>
-      //Initialize Socket
-      let PORT = "<%= PORT %>";
-      let connectionUrl = `wss://greenrep.herokuapp.com/`;
-      let connectionUrlDev = `localhost:${PORT}`;
-      let socket = io.connect(connectionUrl);
-      let dataArr;
+      (() => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            getLocation_success,
+            getLocation_error
+          );
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      })();
 
-      function assignData(data) {
-        dataArr = data;
+      function getLocation_success(position) {
+        LoadMap(position);
       }
 
-      socket.on("data", function (data) {
-        assignData(data);
+      function getLocation_error(err) {
+        console.warn("ERROR(" + err.code + "): " + err.message);
+        LoadMap({ coords: { latitude: 0, longitude: 0 } });
+      }
 
-        mapboxgl.accessToken =
-          "pk.eyJ1IjoiZ3JlZW5yZXAiLCJhIjoiY2s4cWx4anF3MDRiZDNncGkwdWpjdml1eiJ9.1dJ2FHIIPIpEqm5-3jHf0Q";
-        let map = new mapboxgl.Map({
-          container: "map",
-          style: "mapbox://styles/mapbox/streets-v9",
-          //change center to user's location
-          //center: [lat, long],
-          zoom: 3,
+      function LoadMap(position) {
+        console.log(position.coords.longitude);
+        console.log(position.coords.latitude);
+        //Initialize Socket
+        let PORT = "<%= PORT %>";
+        let connectionUrl = `wss://greenrep.herokuapp.com/`;
+        let connectionUrlDev = `localhost:${PORT}`;
+        let socket = io.connect(connectionUrlDev);
+        let dataArr;
+
+        function assignData(data) {
+          dataArr = data;
+        }
+
+        socket.on("data", function (data) {
+          assignData(data);
+
+          mapboxgl.accessToken =
+            "pk.eyJ1IjoiZ3JlZW5yZXAiLCJhIjoiY2s4cWx4anF3MDRiZDNncGkwdWpjdml1eiJ9.1dJ2FHIIPIpEqm5-3jHf0Q";
+          let map = new mapboxgl.Map({
+            container: "map",
+            style: "mapbox://styles/mapbox/streets-v9",
+            //change center to user's location
+            center: [position.coords.longitude, position.coords.latitude],
+            zoom: 10,
+          });
+
+          let geojson = {
+            features: dataArr,
+            type: "FeatureCollection",
+          };
+
+          // add markers to map
+          geojson.features.forEach(function (marker) {
+            // create a HTML element for each feature
+            let el = document.createElement("div");
+
+            //CHECK THE REVIEW SCORE AND DETERMINE WHAT ICON
+            let markerType;
+            if (marker.properties.score <= 1) {
+              markerType = "marker-1";
+            } else if (marker.properties.score <= 2) {
+              markerType = "marker-2";
+            } else if (marker.properties.score <= 3) {
+              markerType = "marker-3";
+            } else if (marker.properties.score <= 4) {
+              markerType = "marker-4";
+            } else {
+              markerType = "marker-5";
+            }
+            el.className = markerType;
+
+            // make a marker for each feature and add to the map
+            new mapboxgl.Marker(el)
+              .setLngLat(marker.geometry.coordinates)
+              .setPopup(
+                new mapboxgl.Popup({ offset: 25 }) // add popups
+                  .setHTML(
+                    "<h3>" +
+                      marker.properties.title +
+                      "</h3><p>" +
+                      marker.properties.description +
+                      "</p>" +
+                      `<h3>User submitted score </h3> <div class="score"><p>${marker.properties.score}</p></div>` +
+                      `<h3>User submitted image</h3>` +
+                      `<a data-lightbox="image-1" data-title="${marker.properties.title} <br> ${marker.properties.description}" href="${marker.properties.imageurl}"><img src="${marker.properties.imageurl}" class="image"></a>`
+                  )
+              )
+              .addTo(map);
+          });
         });
-
-        let geojson = {
-          features: dataArr,
-          type: "FeatureCollection",
-        };
-
-        // add markers to map
-        geojson.features.forEach(function (marker) {
-          // create a HTML element for each feature
-          let el = document.createElement("div");
-
-          //CHECK THE REVIEW SCORE AND DETERMINE WHAT ICON
-          let markerType;
-          if (marker.properties.score <= 1) {
-            markerType = "marker-1";
-          } else if (marker.properties.score <= 2) {
-            markerType = "marker-2";
-          } else if (marker.properties.score <= 3) {
-            markerType = "marker-3";
-          } else if (marker.properties.score <= 4) {
-            markerType = "marker-4";
-          } else {
-            markerType = "marker-5";
-          }
-          el.className = markerType;
-
-          // make a marker for each feature and add to the map
-          new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
-            .setPopup(
-              new mapboxgl.Popup({ offset: 25 }) // add popups
-                .setHTML(
-                  "<h3>" +
-                    marker.properties.title +
-                    "</h3><p>" +
-                    marker.properties.description +
-                    "</p>" +
-                    `<h3>User submitted score </h3> <div class="score"><p>${marker.properties.score}</p></div>` +
-                    `<h3>User submitted image</h3>` +
-                    `<a data-lightbox="image-1" data-title="${marker.properties.title} <br> ${marker.properties.description}" href="${marker.properties.imageurl}"><img src="${marker.properties.imageurl}" class="image"></a>`
-                )
-            )
-            .addTo(map);
-        });
-      });
+      }
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox-plus-jquery.min.js"></script>
   </body>
