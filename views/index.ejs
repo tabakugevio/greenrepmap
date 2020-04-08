@@ -115,15 +115,15 @@
       })();
 
       function getLocation_success(position) {
-        LoadMap(position);
+        LoadMap(position, 10); //pos and zoom
       }
 
       function getLocation_error(err) {
         console.warn("ERROR(" + err.code + "): " + err.message);
-        LoadMap({ coords: { latitude: 0, longitude: 0 } });
+        LoadMap({ coords: { latitude: 0, longitude: 0 } }, 2); //pos and zoom
       }
 
-      function LoadMap(position) {
+      function LoadMap(position, zoom) {
         console.log(position.coords.longitude);
         console.log(position.coords.latitude);
         //Initialize Socket
@@ -147,7 +147,7 @@
             style: "mapbox://styles/mapbox/streets-v9",
             //change center to user's location
             center: [position.coords.longitude, position.coords.latitude],
-            zoom: 10,
+            zoom: zoom,
           });
 
           let geojson = {
