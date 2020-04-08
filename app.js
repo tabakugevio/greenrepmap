@@ -3,9 +3,9 @@ let app = require("express")();
 let server = require("http").Server(app);
 let io = require("socket.io")(server);
 let bodyParser = require("body-parser");
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-server.listen(port, () => console.log(`GreenRepAPI listening at port ${port}`));
+server.listen(PORT, () => console.log(`GreenRepAPI listening at port ${PORT}`));
 
 app.use(bodyParser.json());
 
