@@ -2,12 +2,14 @@ const express = require("express");
 let app = require("express")();
 let server = require("http").Server(app);
 let io = require("socket.io")(server);
+let path = require("path");
 let bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => console.log(`GreenRepAPI listening at port ${PORT}`));
 
 app.use(bodyParser.json());
+app.set("view engine", "ejs");
 
 let tempData = [
   {
@@ -38,8 +40,10 @@ let tempData = [
   },
 ];
 
+app.set("views", path.join(__dirname + "/views"));
+
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/src/index.html");
+  res.render("index", { PORT: PORT });
 });
 
 io.on("connection", function (socket) {

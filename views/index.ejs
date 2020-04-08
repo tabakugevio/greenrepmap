@@ -104,7 +104,8 @@
 
     <script>
       //Initialize Socket
-      let socket = io.connect("http://localhost:3000");
+      let PORT = "<%= PORT %>";
+      let socket = io.connect(`localhost:${PORT}`);
       let dataArr;
 
       function assignData(data) {
