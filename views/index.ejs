@@ -183,6 +183,13 @@
             zoom: zoom,
           });
 
+			/* Add Controls to the Map */
+map.addControl(new mapboxgl.NavigationControl(), "top-left");
+map.addControl(new PitchToggle({ minpitchzoom: 11 }), "top-left");
+map.addControl(ctrlPoint, "bottom-left");
+map.addControl(ctrlLine, "bottom-right");
+map.addControl(ctrlPolygon, "top-left");
+			
           let geojson = {
             features: dataArr,
             type: "FeatureCollection",
