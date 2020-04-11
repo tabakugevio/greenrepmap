@@ -16,9 +16,9 @@ let tempData = [
     type: "Feature",
     properties: {
       title: "Tirane",
-      description: "Example description",
-      score: 1,
-      imageurl: "assets/img.jpg",
+      description: "This place was full of garbage but we worked voluntarily to clean it. It looks sweet now!",
+      score: 5,
+      imageurl: "https://images.unsplash.com/photo-1548015617-791709258509?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=658&q=80",
     },
     geometry: {
       coordinates: [19.819025, 41.327953],
