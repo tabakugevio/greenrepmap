@@ -31,7 +31,7 @@ let tempData = [
       title: "Gramsh",
       description: "Example description",
       score: 4.3,
-      imageurl: "assets/img.jpg",
+      imageurl: "https://api.time.com/wp-content/uploads/2017/04/arctic-ocean-garbage-norway.jpg",
     },
     geometry: {
       coordinates: [20.17633, 40.872727],
