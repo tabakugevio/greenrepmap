@@ -116,7 +116,19 @@
           alert("Geolocation is not supported by this browser.");
         }
       })();
-
+		class MyCustomControl {
+  onAdd(map){
+    this.map = map;
+    this.container = document.createElement('div');
+    this.container.className = 'mapboxgl-ctrl btn btn-primary';
+    this.container.textContent = 'My custom control';
+    return this.container;
+  }
+  onRemove(){
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+}
       function getLocation_success(position) {
         LoadMap(position, 10); //pos and zoom
       }
