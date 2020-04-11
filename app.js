@@ -125,7 +125,7 @@ let tempData = [
       imageurl: "https://images.unsplash.com/photo-1565803974275-dccd2f933cbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80",
     },
     geometry: {
-      coordinates: [40.472258, 0.481324], 
+      coordinates: [0.481324, 40.472258], 
       type: "Point",
     },
   },
