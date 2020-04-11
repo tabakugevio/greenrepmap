@@ -103,6 +103,32 @@ let tempData = [
       type: "Point",
     },
   },
+    {
+    type: "Feature",
+    properties: {
+      title: "Costa De Fora, Spain",
+      description: "This beach is amazing, the only thing that needs to be fixed is this pile of garbage here.",
+      score: 3.0,
+      imageurl: "https://images.pexels.com/photos/2447036/pexels-photo-2447036.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    },
+    geometry: {
+      coordinates: [0.645498, 40.553856],
+      type: "Point",
+    },
+  },
+    {
+    type: "Feature",
+    properties: {
+      title: "Vinaros, Spain",
+      description: "There was a lot of trash before, but we cleaned up everything!",
+      score: 4.9,
+      imageurl: "https://images.unsplash.com/photo-1565803974275-dccd2f933cbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80",
+    },
+    geometry: {
+      coordinates: [40.472258, 0.481324], 
+      type: "Point",
+    },
+  },
 ];
 
 app.set("views", path.join(__dirname + "/views"));
