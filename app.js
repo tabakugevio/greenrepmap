@@ -64,6 +64,32 @@ let tempData = [
       type: "Point",
     },
   },
+    {
+    type: "Feature",
+    properties: {
+      title: "Beach in Vlora",
+      description: "This beach in Vlora needs urgent cleaning in order to accomodate turists in the right way.",
+      score: 2.1,
+      imageurl: "https://images.unsplash.com/photo-1526951521990-620dc14c214b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80",
+    },
+    geometry: {
+      coordinates: [19.454856, 40.468999], 
+      type: "Point",
+    },
+  },
+     {
+    type: "Feature",
+    properties: {
+      title: "Beach in Vlora",
+      description: "After finding a whole lot of garbage in this beach, we formed a volunteer team thanks to GreenRep and cleaned it!",
+      score: 5.0,
+      imageurl: "https://images.unsplash.com/photo-1565886728041-a239b6a3ec42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80",
+    },
+    geometry: {
+      coordinates: [19.493877, 40.431448],
+      type: "Point",
+    },
+  },
 ];
 
 app.set("views", path.join(__dirname + "/views"));
