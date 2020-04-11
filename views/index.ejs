@@ -32,40 +32,40 @@
       .marker-1 {
         background-image: url("/assets/marker-1.png");
         background-size: cover;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         cursor: pointer;
       }
       .marker-2 {
         background-image: url("/assets/marker-2.png");
         background-size: cover;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         cursor: pointer;
       }
       .marker-3 {
         background-image: url("/assets/marker-3.png");
         background-size: cover;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         cursor: pointer;
       }
       .marker-4 {
         background-image: url("/assets/marker-4.png");
         background-size: cover;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         cursor: pointer;
       }
       .marker-5 {
         background-image: url("/assets/marker-5.png");
         background-size: cover;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         cursor: pointer;
       }
@@ -116,19 +116,7 @@
           alert("Geolocation is not supported by this browser.");
         }
       })();
-		class MyCustomControl {
-  onAdd(map){
-    this.map = map;
-    this.container = document.createElement('div');
-    this.container.className = 'mapboxgl-ctrl btn btn-primary';
-    this.container.textContent = 'My custom control';
-    return this.container;
-  }
-  onRemove(){
-    this.container.parentNode.removeChild(this.container);
-    this.map = undefined;
-  }
-}
+	  
       function getLocation_success(position) {
         LoadMap(position, 10); //pos and zoom
       }
@@ -164,6 +152,20 @@
             center: [position.coords.longitude, position.coords.latitude],
             zoom: zoom,
           });
+		  
+		  		class MyCustomControl {
+  onAdd(map){
+    this.map = map;
+    this.container = document.createElement('div');
+    this.container.className = 'mapboxgl-ctrl btn btn-primary';
+    this.container.textContent = 'My custom control';
+    return this.container;
+  }
+  onRemove(){
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+}
 			
           let geojson = {
             features: dataArr,
