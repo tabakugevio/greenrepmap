@@ -195,7 +195,7 @@ class MyCustomControl {
     this.map = map;
     this.container = document.createElement('button');
     this.container.className = 'mapboxgl-ctrl btn btn-primary btn-lg btn-block';
-	this.container.idName = 'modal';
+	this.container.onClick = 'modal';
     this.container.textContent = 'Add your submission';
     return this.container;
   }
