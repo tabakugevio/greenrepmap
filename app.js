@@ -90,6 +90,19 @@ let tempData = [
       type: "Point",
     },
   },
+      {
+    type: "Feature",
+    properties: {
+      title: "Village in Elbasan",
+      description: "",
+      score: 3.0,
+      imageurl: "https://images.unsplash.com/photo-1531326537431-6197cac3795b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+    },
+    geometry: {
+      coordinates: [20.062165, 41.188977],
+      type: "Point",
+    },
+  },
 ];
 
 app.set("views", path.join(__dirname + "/views"));
