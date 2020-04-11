@@ -44,7 +44,7 @@ let tempData = [
       title: "Parku neighborhood",
       description: "This place is full of garbage. It needs urget attention to clean it.",
       score: 1.1,
-      imageurl: "https://api.time.com/wp-content/uploads/2017/04/arctic-ocean-garbage-norway.jpg",
+      imageurl: "https://images.unsplash.com/photo-1558497513-f0133e055abf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
     },
     geometry: {
       coordinates: [20.189839, 40.854595],
@@ -60,7 +60,7 @@ let tempData = [
       imageurl: "https://cdn1.i-scmp.com/sites/default/files/styles/768x768/public/images/methode/2018/10/18/06fd8d1e-d05e-11e8-81a4-d952f5356e85_1280x720_184009.JPG",
     },
     geometry: {
-      coordinates: [20.189839, 40.854595],
+      coordinates: [19.818705, 41.312463],
       type: "Point",
     },
   },
